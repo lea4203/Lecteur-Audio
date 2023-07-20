@@ -16,20 +16,39 @@
 
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pseudo']) && isset($_POST['message'])) {
     // Récupération des données du formulaire
     $pseudo = $_POST['pseudo'];
     $message = $_POST['message'];
 
-    // Insertion des données dans la base de données
+    // Vérifier si l'utilisateur existe dans la table "user"
+    $query = "SELECT id FROM user WHERE pseudo = :pseudo";
+    $statement = $pdo->prepare($query);
+    $statement->execute(['pseudo' => $pseudo]);
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-    $query = "INSERT INTO user (pseudo, comments) VALUES (:pseudo, :comments)";
+    // Si l'utilisateur n'existe pas, l'insérer dans la table "user"
+    if (!$user) {
+        $query = "INSERT INTO user (pseudo) VALUES (:pseudo)";
+        $statement = $pdo->prepare($query);
+        $statement->execute(['pseudo' => $pseudo]);
+
+        // Récupérer l'ID de l'utilisateur nouvellement inséré
+        $user_id = $pdo->lastInsertId();
+    } else {
+        // Utiliser l'ID de l'utilisateur existant
+        $user_id = $user['id'];
+    }
+
+    // Insérer le commentaire dans la table "comments" en utilisant l'ID de l'utilisateur
+    $query = "INSERT INTO comments (id_user, content) VALUES (:id_user, :content)";
     $statement = $pdo->prepare($query);
     $statement->execute([
-        'pseudo' => $pseudo,
-        'comments' => $message // Utiliser la variable $message ici
+        'id_user' => $user_id,
+        'content' => $message
     ]);
 }
+
 
 ?>
 
@@ -63,39 +82,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 </div>
+ <!-- Bouton pour ouvrir la modal des commentaires -->
+ <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#commentsModal">
+        Afficher les commentaires
+    </button>
 
-<div id="comments-container">
+    <!-- Modal pour afficher les commentaires -->
+    <div class="modal fade" id="commentsModal" tabindex="-1" aria-labelledby="commentsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="commentsModalLabel">Commentaires</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="comments-container">
+                        <?php
+                        $query = "SELECT * FROM comments INNER JOIN user ON comments.id_user = user.id";
+                        $statement = $pdo->prepare($query);
+                        $statement->execute();
+                        $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-<?php
-    // Récupération des commentaires depuis la base de données
-    $query = "SELECT * FROM user";
-    $statement = $pdo->query($query);
-    $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
+                        foreach ($comments as $comment) {
+                         echo '<div class="comment">';
+                            echo '<div class="comment-header">';
+                            echo '<br>';
+                                echo '<div class="comment-author">' . $comment['pseudo'] . '</div>';
+                                echo '<br>';
+                                echo '<div class = "comment-text">' . $comment['content'] . '</div>';
+                            echo '</div>';
+                        echo '</div>';
 
-    foreach ($comments as $comment) {
-        echo "<div class='col-12'>";
-        echo "<div class='card'>";
-        echo "<div class='card-body'>";
-        echo "<h5 class='card-title'>" . $comment['pseudo'] . "</h5>";
-        echo "<p class='card-text'>" . $comment['comments'] . "</p>";
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
-    }
-    ?>
-</div>
+                        }
 
-
+                        
+                        ?>
+                       
+                            
+                          
+                   
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
-
-</div>
 
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </body>
 
 </html>

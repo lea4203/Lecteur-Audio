@@ -1,5 +1,10 @@
 <?php
-include_once 'configs/connexion.php';
+
+session_start();
+include_once 'configs/connexion.php'
+       // Démarrer la session
+       
+        
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +42,7 @@ include_once 'configs/connexion.php';
         <button id="play-pause-button"><i class="fas fa-play"></i></button>
         <button id="previous-button"><i class="fas fa-step-backward"></i></button>
         <button id="next-button"><i class="fas fa-step-forward"></i></button>
+        <button id="random-button"><i class="fas fa-random"></i></button>
     </div>
     <audio id="audio-player"  src="musics/Djadja-Dinaz-Capitaine.mp3" type="audio/mp3">
     </audio>
@@ -50,6 +56,21 @@ include_once 'configs/connexion.php';
     </audio>
     <audio id="audio-player-5"src="musics/Zola-amber.mp3" type="audio/mp3">
     </audio>
+    <audio id="audio-player-6" src="musics/📀 Danakil-Marley [Official Audio].mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio-player-7" src="musics/Ces-femmes-là.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio-player-8" src="musics/Generique-pokemon.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio-player-9" src="musics/Iko-Iko-ma-bestie.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio-player-10" src="musics/J'irai-ou-tu-iras.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio-player-11" src="musics/Je-m'apelle-funny-bear.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio-player-12" src="musics/Mulan-Comme-un-homme.mp3" type="audio/mp3">
+    </audio>
+
 </div>
     <?php include ("comments.php"); ?>
 <script>

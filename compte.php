@@ -1,27 +1,38 @@
 <?php
-    include_once('configs/connexion.php');
-    include("header.php");
-    if (!isset($_SESSION['LOGGED_USER'])){
-        include_once('login.php');
-    }
-    else {
-    $query = 'SELECT * FROM user where pseudo = "' . $_SESSION['LOGGED_USER'] . '"';
-    $userStatement = $pdo -> prepare($query);
-    $userStatement -> execute();
-    $user = $userStatement -> fetch(PDO::FETCH_ASSOC);
-    ?>
-    <div class="d-flex flex-column align-items-center">
-    <h1>Mon compte</h1>
-    <h2>Votre pseudo : <?php echo($user['pseudo']) ?></h2> 
-    
+// Assurez-vous que la session est démarrée avant tout envoi de contenu HTML
+session_start();
 
-    <form action="traitement/modif-compte.php" method="post" class="d-flex flex-column text-center">
-    <label for="pseudo">
-    <input type="text" name="pseudo" id="pseudo" value="<?php echo($user['pseudo']);?>">
-    <input type="submit" value="modifier">
-    </form>
-    
-<h4> Vous voulez vous déconnecter ? </h4>
-<a href="logout.php">Se déconnecter</a>
-</div>
-<?php } ?>
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['id_user']) || !isset($_SESSION['pseudo'])) {
+    // Rediriger l'utilisateur vers la page de connexion s'il n'est pas connecté
+    header("Location: index.php");
+    exit;
+}
+
+// Inclure le fichier de connexion à la base de données
+include 'configs/connexion.php';
+
+// Requête SQL pour récupérer les informations de l'utilisateur connecté
+$query = "SELECT * FROM user WHERE id = :id";
+$statement = $pdo->prepare($query);
+$statement->execute(['id' => $_SESSION['id_user']]);
+$user = $statement->fetch(PDO::FETCH_ASSOC);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compte</title>
+</head>
+<body>
+    <h1>Bienvenue sur votre compte, <?php echo $_SESSION['pseudo']; ?>!</h1>
+    <h2>Vos informations :</h2>
+    <p>Nom d'utilisateur : <?php echo $user['pseudo']; ?></p>
+    <!-- Ajoutez ici d'autres informations que vous souhaitez afficher sur le compte -->
+
+    <a href="logout.php">Déconnexion</a>
+</body>
+</html>
