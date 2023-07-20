@@ -20,7 +20,7 @@ include_once 'configs/connexion.php'
     <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <title>QuizzMaster</title>
+    <title>SoundScape</title>
 </head>
 
 <body>
@@ -43,6 +43,7 @@ include_once 'configs/connexion.php'
         <button id="previous-button"><i class="fas fa-step-backward"></i></button>
         <button id="next-button"><i class="fas fa-step-forward"></i></button>
         <button id="random-button"><i class="fas fa-random"></i></button>
+        <button id="repeat-button"><i class="fas fa-repeat"></i></button>
     </div>
     <audio id="audio-player"  src="musics/Djadja-Dinaz-Capitaine.mp3" type="audio/mp3">
     </audio>
@@ -55,8 +56,6 @@ include_once 'configs/connexion.php'
     <audio id="audio-player-4"  src="musics/Tiakola-Meuda.mp3" type="audio/mp3">
     </audio>
     <audio id="audio-player-5"src="musics/Zola-amber.mp3" type="audio/mp3">
-    </audio>
-    <audio id="audio-player-6" src="musics/📀 Danakil-Marley [Official Audio].mp3" type="audio/mp3">
     </audio>
     <audio id="audio-player-7" src="musics/Ces-femmes-là.mp3" type="audio/mp3">
     </audio>
