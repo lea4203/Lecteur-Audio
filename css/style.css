@@ -1,0 +1,196 @@
+/* Styles généraux */
+body {
+  background-color: #767678;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  animation: fade-in-header 1s ease-in-out;
+}
+
+@keyframes fade-in-header {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1, h2 {
+  text-align: center;
+  font-weight: 700;
+  color: #525153; /* Primary color */
+}
+
+p {
+  text-align: center;
+  color: #fff; /* White text color */
+}
+
+/* Navbar styles */
+.navbar {
+  background-color: #353336;
+  padding: 10px 0;
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff; /* White text color */
+}
+
+.navbar-toggler {
+  border-color: transparent;
+}
+
+.nav-link {
+  color: #fff; /* White text color */
+  font-size: 18px;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.nav-link:hover {
+  background-color: #fff; /* White background on hover */
+  color: #8a57a6; /* Primary color on hover */
+}
+
+.form-control {
+  width: 300px;
+}
+
+/* Audio players styles */
+.audio-player {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  background-color: #282828;
+  color: #fff; /* White text color */
+  border-radius: 10px;
+}
+
+.audio-player .cover {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.audio-player .cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.audio-player .info {
+  flex-grow: 1;
+}
+
+.audio-player .info .title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.audio-player .info .artist {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.audio-player .controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.audio-player .controls button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #fff; /* White icon color */
+}
+
+.audio-player .controls button:focus {
+  outline: none;
+}
+
+.audio-player .controls button.play-pause i {
+  transition: transform 0.2s ease-in-out;
+}
+
+.audio-player .controls button.play-pause.playing i {
+  transform: rotateZ(-15deg);
+}
+
+.audio-player .controls button:hover {
+  color: #646166; /* Primary color on hover */
+}
+
+.audio-player .controls button.play-pause:hover i {
+  color: #7c7580; /* Primary color on hover */
+  transform: scale(1.2);
+}
+
+.audio-player .controls button.play-pause.playing:hover i {
+  transform: scale(1.2) rotateZ(-15deg);
+}
+
+/* partie chat */
+.container {
+  margin-top: 20px;
+}
+
+h1 {
+  color: #e8dee3;
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+.form-group label {
+  color: #e9d6e0;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: #595859; /* Primary color */
+  border-color: #442d51;
+}
+
+.btn-primary:hover {
+  background-color: #737174;
+  border-color: #555156; /* Complementary color on hover */
+}
+
+.card {
+  background-color: #767678;
+  border-color: #6f6c6f; /* Complementary color */
+}
+
+.card-title {
+  color: #504e50; /* Complementary color */
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.card-text {
+  color: #666;
+}
+
+.text-center {
+  color: #acacb8; /* Complementary color */
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
