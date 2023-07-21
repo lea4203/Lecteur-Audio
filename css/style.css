@@ -142,7 +142,7 @@ p {
 
 /* Styles pour le bouton de lecture aléatoire */
 #random-button.active {
-  background-color: #2196F3; /* Couleur active */
+  background-color: #5f6367; /* Couleur active */
 }
 
 /* partie chat */
@@ -211,4 +211,57 @@ h1 {
   animation: fadeOut 5s forwards; /* Fondu de sortie pendant 5 secondes */
 }
 
+  /* style pour les playlists */
 
+/* CSS pour le conteneur de la page */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* CSS pour le formulaire */
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-check {
+  margin-bottom: 5px;
+}
+
+/* CSS pour le bouton de création */
+.btn-primary {
+  background-color: #585a5d;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* CSS pour la liste des playlists */
+h2 {
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+/* CSS pour les menus déroulants */
+h3 {
+  margin-bottom: 5px;
+}
+
+select {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
