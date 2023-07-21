@@ -265,3 +265,48 @@ select {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+/* Définition des styles pour les petits écrans */
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  table {
+    font-size: 12px;
+  }
+}
+
+/* Définition des styles pour les écrans de taille moyenne */
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+  body {
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+}
+
+/* Définition des styles pour les grands écrans */
+@media screen and (min-width: 1025px) {
+  body {
+    font-size: 18px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  table {
+    font-size: 16px;
+  }
+}  

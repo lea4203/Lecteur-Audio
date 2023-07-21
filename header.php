@@ -27,7 +27,7 @@
                 <div class="collapse navbar-collapse offset-6" id="navbarNav">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="login.php">Se connecter</a>
+                         
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="compte.php">Mon compte</a>
