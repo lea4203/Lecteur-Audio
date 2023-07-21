@@ -16,6 +16,17 @@
         // Récupérer les données du formulaire
         $pseudo = $_POST['pseudo'];
 
+
+
+
+
+
+           // Inserer les utilisateurs en base de données //
+           $query = "INSERT INTO user (pseudo) VALUES (:pseudo)";
+           $statement = $pdo->prepare($query);
+           $statement->execute(['pseudo' => $pseudo]);
+
+           
         // Requête SQL pour récupérer les informations de l'utilisateur
         $query = "SELECT * FROM user WHERE pseudo = :pseudo";
         $statement = $pdo->prepare($query);
@@ -23,14 +34,10 @@
         $user = $statement->fetch(PDO::FETCH_ASSOC);
 
 
-        // Inserer les utilisateurs en base de données //
-        $query = "INSERT INTO user (pseudo) VALUES (:pseudo)";
-        $statement = $pdo->prepare($query);
-        $statement->execute(['pseudo' => $pseudo]);
+     
 
-        // Récupérer l'ID de l'utilisateur nouvellement inséré
-        $user_id = $pdo->lastInsertId();
-        
+       
+
 
         if ($user) {
             // Stocker les informations de l'utilisateur dans la session
